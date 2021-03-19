@@ -16,7 +16,7 @@ class UserProfileManager(BaseUserManager):
         user = self.model(email=email, name=name)
 
         user.set_password(password)
-        """This stored Hashed passwords in the database instead of Plain text password"""
+        """This stores Hashed passwords in the database instead of Plain text password"""
         user.save(using=self._db)
         """Standard procedure for saving objects in django"""
 
