@@ -36,3 +36,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
             instance.set_password(password)
 
         return super().update(instance, validated_data)
+
+
+class ProfileFeedItemSerializer(serializers.ModelSerializer):
+    """Serializes profile feed items"""
+    class Meta:
+        model = models.ProfileFeedItem
+        fields = ('id', 'user_profile', 'status_text', 'created_on',)
+        extra_kwargs = {'user_profile': {'read_only' : True}} #id and created_on are automatically given values, current user should not be able to change user profile value as the user is not allowed to post as somebody else or delete somebody else's status feed
